@@ -3,6 +3,8 @@
 #include <math.h>
 #include <omp.h>
 
+int n_hilos; // SIEMPRE FUERA, QUEREMOS SABER TODOS LOS HILOS DEL PROGRAMA
+
 /* Funcion f(x) de la cual se quiere calcular la integral */
 double f(double x)
 {
@@ -18,8 +20,10 @@ double calcula_integral1(double a, double b, int n)
 
    h=(b-a)/n;
 
+   #pragma omp parallel for reduction(+:s) //private(i) es opcional poner porque el compilador la coge directamente xq es la variable de iteración
    for (i=0; i<n; i++) {
       s+=f(a+h*(i+0.5));
+      n_hilos=omp_get_thread_num();
    }
 
    result = h*s;
@@ -33,12 +37,13 @@ double calcula_integral2(double a, double b, int n)
    int i;
 
    h=(b-a)/n;
-
+  
+  #pragma omp parallel for reduction(+:s) private(x)
    for (i=0; i<n; i++) {
       x=a;
       x+=h*(i+0.5);
-
-      s+=f(x);
+      s+=f(x);  
+      n_hilos=omp_get_thread_num();
    }
 
    result = h*s;
@@ -48,11 +53,8 @@ double calcula_integral2(double a, double b, int n)
 int main(int argc, char *argv[])
 {
    double a, b, result;
-   int n, variante, n_hilos;
-
-  n_hilos=omp_get_thread_num();
-  printf("Numero de hilos = %d\n", n_hilos);
-
+   int n, variante;
+ 
    if (argc<2) {
       fprintf(stderr, "Numero de argumentos incorrecto\n");
       return 1;
@@ -76,6 +78,6 @@ int main(int argc, char *argv[])
    }
 
    printf("Valor de la integral = %.12f\n", result);
-
+   printf("Numero de hilos = %d\n", n_hilos);
    return 0;
 }
