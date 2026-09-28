@@ -10,7 +10,7 @@
 
 #define NUM_PASOS 5
 #define DIST_RADIO 8
-#define IMAGEN_ENTRADA "peppers.ppm"
+#define IMAGEN_ENTRADA "peppers-1k.ppm"
 #define IMAGEN_SALIDA "peppers-fil.ppm"
 
 struct pixel {

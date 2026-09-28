@@ -91,7 +91,7 @@ int Filtro(int pasos, int radio, struct pixel **ppsImagenOrg, struct pixel **pps
 {
   int i, j, k, l, p, tot;
 
-  //struct { int r, g, b; } resultado; // ya no la usamos
+  struct { int r, g, b; } resultado;
   int **ppdBloque, v;
 
   if ((ppdBloque = (int **)malloc(sizeof(int *) * (2*radio + 1))) == NULL) {
@@ -108,61 +108,34 @@ int Filtro(int pasos, int radio, struct pixel **ppsImagenOrg, struct pixel **pps
       ppdBloque[i + radio][j + radio] = (radio - abs(i)) * (radio - abs(i)) + (radio - abs(j)) * (radio - abs(j)) + 1;
 
 // Bucles a paralelizar
-  int r, g, b;
+
   double t1 = omp_get_wtime();
-  //#pragma omp parallel for private(v,r,g,b,tot,i,j,k,l) /* BUCLE NO PARALELIZABLE (por naturaleza)** */
   for (p = 0; p < pasos; p++) {
-    #pragma omp parallel for private(v,r,g,b,tot,j,k,l) // BUCLE ÓPTIMO PARALELIZABLE /* al ir subiendo de bucle, se tienen que ir añadiendo más variables privadas */
     for (i = 0; i < n; i++) {
-      //#pragma omp parallel for private(v,r,g,b,tot,k,l) /* ya no se pone reducción, porq las variables se declaran fuera del bucle */
       for (j = 0; j < m; j++) {
-        /*
         resultado.r = 0;
         resultado.g = 0;
         resultado.b = 0;
-        */
-        r = 0; 
-        g = 0; 
-        b = 0;
         tot = 0;
-        //#pragma omp parallel for private(v,l) reduction(+:r,g,b,tot) /* tenemos que añadir la l porque ya no es privada por defecto, hemos sacado la instrucción */ 
         for (k = max(0, i - radio); k <= min(n - 1, i + radio); k++) {
-          //#pragma omp parallel for private(v) reduction(+:resultado.r, resultado.g, resultado.b, tot) /* reduction es un struct, NO se puede meter a omp */ 
-          //#pragma omp parallel for private(v) reduction(+r,g,b,tot) /* si lo ponemos aquí va lento de huevos (overhead) */
           for (l = max(0, j - radio); l <= min(m - 1, j + radio); l++) {
             v = ppdBloque[k - i + radio][l - j + radio];
-            /*
             resultado.r += ppsImagenOrg[k][l].r * v;
             resultado.g += ppsImagenOrg[k][l].g * v;
             resultado.b += ppsImagenOrg[k][l].b * v;
-            */
-            r += ppsImagenOrg[k][l].r * v;
-            g += ppsImagenOrg[k][l].g * v;
-            b += ppsImagenOrg[k][l].b * v;
             tot += v;
           }
         }
-        /*
         resultado.r /= tot;
         resultado.g /= tot;
         resultado.b /= tot;
-        */
-        r /= tot;
-        g /= tot;
-        b /= tot;
-        /*
         ppsImagenDst[i][j].r = resultado.r;
         ppsImagenDst[i][j].g = resultado.g;
         ppsImagenDst[i][j].b = resultado.b;
-        */
-
-        ppsImagenDst[i][j].r = r;
-        ppsImagenDst[i][j].g = g;
-        ppsImagenDst[i][j].b = b;
       }
     }
     if (p+1 < pasos)
-      memcpy(ppsImagenOrg[0], ppsImagenDst[0], n * m * sizeof(struct pixel)); /* ** la naturaleza, si varía el nº de pasos se copia*/
+      memcpy(ppsImagenOrg[0], ppsImagenDst[0], n * m * sizeof(struct pixel));
   }
   double t2 = omp_get_wtime();
   printf("Tiempo = %f\n", t2 - t1);
