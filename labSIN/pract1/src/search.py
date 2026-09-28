@@ -1541,11 +1541,14 @@ def register_algorithm(name, runner, include_in_all=True, replace=False):
     }
 
 
-def register_heuristic(name, heuristic, strategy="astar", include_in_all=True, replace=False):
+def register_heuristic(name, heuristic, strategy="astar", include_in_all=True, replace=True):
     """Registra una heurística sin modificar ``run_algorithm``.
 
     ``strategy`` puede ser ``"astar"``, ``"greedy"`` o ``"ida"``.
     La heurística debe aceptar ``(state, end_state)``.
+    Por defecto, actualiza el registro si el nombre ya existe, para permitir
+    volver a ejecutar una celda tras modificar la heurística. Usa
+    ``replace=False`` para rechazar nombres ya registrados.
     """
     if strategy == "astar":
         runner = lambda initial, end, size, depth: graphSearch(
