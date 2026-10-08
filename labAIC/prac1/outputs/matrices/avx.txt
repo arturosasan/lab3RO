@@ -1,0 +1,6 @@
+Rep = 1 / size = 1024
+
+real    0m2,178s
+user    0m2,133s
+sys     0m0,021s
+

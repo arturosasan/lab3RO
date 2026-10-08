@@ -1,0 +1,7 @@
+STD Y LOAD NO SON VERSIONES SIMD == NO CUENTAN PARA EL EJERCICIO DE LAS MATRICES ->
+
+"Ser´a necesario obtener el tiempo de ejecuci ´on para la versi ´on estandar (tstd), las versiones
+SIMD (tsse, tavx, tavx512) y la versi ´on eliminando el producto scalar para obtener la sobre-
+carga del bucle de medida y la inicializaci ´on de los vectores (tload). Restando este valor
+a los anteriores podremos obtener el tiempo real empleado por el componente que nos
+interesa."
