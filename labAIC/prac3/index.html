@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+<head>
+<title>Inicio: suma.s. Ciclo 1</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
+<style>
+html, body {
+    font-family:"Courier", Times, serif;
+    font-size:10pt;
+    line-height:100%;
+}
+ .field { display: inline-block; font-size: 80%; height: 16px; text-align: center; padding: 4px 0px 0px 0px; border: 1px solid black}
+ .texto { display: inline-block;  width: 50px; }
+</style>
+</head>
+<body>
+
+<!-- Barra de navegacion CSS -->
+<div class="w3-bar w3-top w3-light-grey">
+<a class="w3-bar-item w3-button w3-hover-grey" href="index.html">INICIO</a>
+<a class="w3-bar-item w3-button" href="final.html">FINAL</a>
+<a class="w3-bar-item w3-button" href="result001.html">Estado</a>
+</div>
+
+<br><br><br>
+<div class="w3-row w3-container">
+<!-- Configuración -->
+<table>
+<tr>
+  <td colspan="2" bgcolor="#ccddff" align="center">Configuración</td>
+</tr>
+<tr>
+  <td bgcolor="#ccddff" align="center">Parámetro</td>
+  <td bgcolor="#ddeeff" align="center">Valor</td>
+</tr>
+<tr>
+  <td bgcolor="#eeeeee">Programa</td>
+  <td bgcolor="#dddddd" align="center"> suma.s</td>
+</tr>
+<tr>
+  <td bgcolor="#eeeeee">Tipo de procesador</td>
+  <td bgcolor="#dddddd" align="center">Segmentado</td>
+</tr>
+<tr>
+  <td bgcolor="#eeeeee">Riesgos de datos</td>
+  <td bgcolor="#dddddd" align="center">Stalls</td>
+</tr>
+<tr>
+  <td bgcolor="#eeeeee">Riesgos de control&nbsp;&nbsp;</td>
+  <td bgcolor="#dddddd" align="center">Predict-not-taken (Lat=3)</td>
+</tr>
+
+<tr>
+  <td bgcolor="#eeeeee">Registros</td>
+  <td bgcolor="#dddddd" align="center">32</td>
+</tr>
+
+<tr>
+  <td bgcolor="#eeeeee">Lat. L/S&nbsp;&nbsp;</td>
+  <td bgcolor="#dddddd" align="center">2</td>
+</tr>
+<tr>
+  <td bgcolor="#eeeeee">Lat. FP ADD&nbsp;&nbsp;</td>
+  <td bgcolor="#dddddd" align="center">4</td>
+</tr>
+<tr>
+  <td bgcolor="#eeeeee">Lat. FP MUL&nbsp;&nbsp;</td>
+  <td bgcolor="#dddddd" align="center">7</td>
+</tr>
+
+<tr>
+  <td bgcolor="#eeeeee">Lat. FP CVT&nbsp;&nbsp;</td>
+  <td bgcolor="#dddddd" align="center">4</td>
+</tr>
+<tr>
+  <td bgcolor="#eeeeee">Lat. FP MISC&nbsp;&nbsp;</td>
+  <td bgcolor="#dddddd" align="center">4</td>
+</tr>
+</table>
+
+<br>
+</div>
+
+<div class="w3-row">
+<div class="w3-cell w3-container">
+<table>
+<tr bgcolor="#ccddff">
+ <td align="center" colspan=5>Memoria de Datos. Region 2</td>
+</tr>
+<tr>
+  <td bgcolor="#ccddff" align="center">Dirección</td>
+  <td bgcolor="#ddeeff" width="50" align="center">+0</td>
+  <td bgcolor="#ddeeff" width="50" align="center">+1</td>
+  <td bgcolor="#ddeeff" width="50" align="center">+2</td>
+  <td bgcolor="#ddeeff" width="50" align="center">+3</td>
+ </tr>
+ <tr bgcolor="#dddddd">
+  <td align="right" bgcolor="#eeeeee">a&nbsp;&nbsp;</td>
+  <td align="center" rowspan="2" colspan="4" bgcolor="#dddddd"><span style="color: darkgray;">0</span></td>
+ </tr>
+ <tr bgcolor="#dddddd">
+  <td align="right" bgcolor="#eeeeee">8196&nbsp;&nbsp;</td>
+ </tr>
+ <tr bgcolor="#dddddd">
+  <td align="right" bgcolor="#eeeeee">y&nbsp;&nbsp;</td>
+  <td align="center" rowspan="2" colspan="4" bgcolor="#dddddd"><span style="color: darkgray;">1</span></td>
+ </tr>
+ <tr bgcolor="#dddddd">
+  <td align="right" bgcolor="#eeeeee">8204&nbsp;&nbsp;</td>
+ </tr>
+ <tr bgcolor="#dddddd">
+  <td align="right" bgcolor="#eeeeee">8208&nbsp;&nbsp;</td>
+  <td align="center" rowspan="2" colspan="4" bgcolor="#dddddd"><span style="color: darkgray;">2</span></td>
+ </tr>
+ <tr bgcolor="#dddddd">
+  <td align="right" bgcolor="#eeeeee">8212&nbsp;&nbsp;</td>
+ </tr>
+ <tr bgcolor="#dddddd">
+  <td align="right" bgcolor="#eeeeee">8216&nbsp;&nbsp;</td>
+  <td align="center" rowspan="2" colspan="4" bgcolor="#dddddd"><span style="color: darkgray;">3</span></td>
+ </tr>
+ <tr bgcolor="#dddddd">
+  <td align="right" bgcolor="#eeeeee">8220&nbsp;&nbsp;</td>
+ </tr>
+ <tr bgcolor="#dddddd">
+  <td align="right" bgcolor="#eeeeee">8224&nbsp;&nbsp;</td>
+  <td align="center" rowspan="2" colspan="4" bgcolor="#dddddd"><span style="color: darkgray;">0</span></td>
+ </tr>
+ <tr bgcolor="#dddddd">
+  <td align="right" bgcolor="#eeeeee">8228&nbsp;&nbsp;</td>
+ </tr>
+ <tr bgcolor="#dddddd">
+  <td align="right" bgcolor="#eeeeee">8232&nbsp;&nbsp;</td>
+  <td align="center" rowspan="2" colspan="4" bgcolor="#dddddd"><span style="color: darkgray;">4</span></td>
+ </tr>
+ <tr bgcolor="#dddddd">
+  <td align="right" bgcolor="#eeeeee">8236&nbsp;&nbsp;</td>
+ </tr>
+ <tr bgcolor="#dddddd">
+  <td align="right" bgcolor="#eeeeee">8240&nbsp;&nbsp;</td>
+  <td align="center" rowspan="2" colspan="4" bgcolor="#dddddd"><span style="color: darkgray;">5</span></td>
+ </tr>
+ <tr bgcolor="#dddddd">
+  <td align="right" bgcolor="#eeeeee">8244&nbsp;&nbsp;</td>
+ </tr>
+ <tr bgcolor="#dddddd">
+  <td align="right" bgcolor="#eeeeee">8248&nbsp;&nbsp;</td>
+  <td align="center" rowspan="2" colspan="4" bgcolor="#dddddd"><span style="color: darkgray;">6</span></td>
+ </tr>
+ <tr bgcolor="#dddddd">
+  <td align="right" bgcolor="#eeeeee">8252&nbsp;&nbsp;</td>
+ </tr>
+ <tr bgcolor="#dddddd">
+  <td align="right" bgcolor="#eeeeee">8256&nbsp;&nbsp;</td>
+  <td align="center" rowspan="2" colspan="4" bgcolor="#dddddd"><span style="color: darkgray;">7</span></td>
+ </tr>
+ <tr bgcolor="#dddddd">
+  <td align="right" bgcolor="#eeeeee">8260&nbsp;&nbsp;</td>
+ </tr>
+ <tr bgcolor="#dddddd">
+  <td align="right" bgcolor="#eeeeee">8264&nbsp;&nbsp;</td>
+  <td align="center" rowspan="2" colspan="4" bgcolor="#dddddd"><span style="color: darkgray;">8</span></td>
+ </tr>
+ <tr bgcolor="#dddddd">
+  <td align="right" bgcolor="#eeeeee">8268&nbsp;&nbsp;</td>
+ </tr>
+</table>
+
+<table>
+<tr bgcolor="#ccddff">
+ <td align="center" colspan=5>Memoria de Datos. Region 3</td>
+</tr>
+<tr>
+  <td bgcolor="#ccddff" align="center">Dirección</td>
+  <td bgcolor="#ddeeff" width="50" align="center">+0</td>
+  <td bgcolor="#ddeeff" width="50" align="center">+1</td>
+  <td bgcolor="#ddeeff" width="50" align="center">+2</td>
+  <td bgcolor="#ddeeff" width="50" align="center">+3</td>
+ </tr>
+ <tr bgcolor="#dddddd">
+  <td align="right" bgcolor="#eeeeee">_stack&nbsp;&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr bgcolor="#dddddd">
+  <td align="right" bgcolor="#eeeeee">65532&nbsp;&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ </tr>
+</table>
+
+</div>
+<div class="w3-cell w3-container">
+<!-- Mem Instr en columna -->
+<table>
+<tr bgcolor="#ccddff">
+  <td align="center" colspan=2>Memoria de Instrucciones</td>
+</tr>
+<tr>
+  <td bgcolor="#ccddff" align="center">Dirección</td>
+  <td width=190 bgcolor="#ddeeff" align="center">Instrucciones</td>
+  <td width=400 bgcolor="#ddeeff" align="center">Formato</td>
+</tr>
+ <tr>
+  <td align="right" bgcolor="#eeeeee">_text&nbsp;&nbsp;</td>
+  <td bgcolor="#dddddd"><font color="darkred">add t1,x0,x0</font></td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'>00000333 | <span style='color:#e040fb' title='f7'>0000000</font><span style='color:#00c853' title='rs2'>00000</font><span style='color:#827717' title='rs1'>00000</font><span style='color:#ea80fc' title='f3'>000</font><span style='color:#1b5e20' title='rd'>00110</font><span style='color:#ff5252' title='op'>0110011</font> R <span class='field' style='color: #e040fb; border-color: #e040fb; width: 77px' title='f7'>f7</span><span class='field' style='color: #00c853; border-color: #00c853; width: 55px' title='rs2'>rs2</span><span class='field' style='color: #827717; border-color: #827717; width: 55px' title='rs1'>rs1</span><span class='field' style='color: #ea80fc; border-color: #ea80fc; width: 33px' title='f3'>f3</span><span class='field' style='color: #1b5e20; border-color: #1b5e20; width: 55px' title='rd'>rd</span><span class='field' style='color: #ff5252; border-color: #ff5252; width: 77px' title='op'>op</span></td>
+</tr>
+ <tr>
+  <td align="right" bgcolor="#eeeeee">4100&nbsp;&nbsp;</td>
+  <td bgcolor="#dddddd"><font color="darkcyan">add t3,x0,x0</font></td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'>00000e33 | <span style='color:#e040fb' title='f7'>0000000</font><span style='color:#00c853' title='rs2'>00000</font><span style='color:#827717' title='rs1'>00000</font><span style='color:#ea80fc' title='f3'>000</font><span style='color:#1b5e20' title='rd'>11100</font><span style='color:#ff5252' title='op'>0110011</font> R <span class='field' style='color: #e040fb; border-color: #e040fb; width: 77px' title='f7'>f7</span><span class='field' style='color: #00c853; border-color: #00c853; width: 55px' title='rs2'>rs2</span><span class='field' style='color: #827717; border-color: #827717; width: 55px' title='rs1'>rs1</span><span class='field' style='color: #ea80fc; border-color: #ea80fc; width: 33px' title='f3'>f3</span><span class='field' style='color: #1b5e20; border-color: #1b5e20; width: 55px' title='rd'>rd</span><span class='field' style='color: #ff5252; border-color: #ff5252; width: 77px' title='op'>op</span></td>
+</tr>
+ <tr>
+  <td align="right" bgcolor="#eeeeee">4104&nbsp;&nbsp;</td>
+  <td bgcolor="#dddddd"><font color="darkblue">addi t2,gp,8 [y]</font></td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'>00818393 | <span style='color:#6200ea' title='imm'>000000001000</font><span style='color:#827717' title='rs1'>00011</font><span style='color:#ea80fc' title='f3'>000</font><span style='color:#1b5e20' title='rd'>00111</font><span style='color:#ff5252' title='op'>0010011</font> I <span class='field' style='color: #6200ea; border-color: #6200ea; width: 132px' title='imm'>imm</span><span class='field' style='color: #827717; border-color: #827717; width: 55px' title='rs1'>rs1</span><span class='field' style='color: #ea80fc; border-color: #ea80fc; width: 33px' title='f3'>f3</span><span class='field' style='color: #1b5e20; border-color: #1b5e20; width: 55px' title='rd'>rd</span><span class='field' style='color: #ff5252; border-color: #ff5252; width: 77px' title='op'>op</span></td>
+</tr>
+ <tr>
+  <td align="right" bgcolor="#eeeeee">loop&nbsp;&nbsp;</td>
+  <td bgcolor="#dddddd"><font color="darkolivegreen">add t1,t3,t1</font></td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'>006e0333 | <span style='color:#e040fb' title='f7'>0000000</font><span style='color:#00c853' title='rs2'>00110</font><span style='color:#827717' title='rs1'>11100</font><span style='color:#ea80fc' title='f3'>000</font><span style='color:#1b5e20' title='rd'>00110</font><span style='color:#ff5252' title='op'>0110011</font> R <span class='field' style='color: #e040fb; border-color: #e040fb; width: 77px' title='f7'>f7</span><span class='field' style='color: #00c853; border-color: #00c853; width: 55px' title='rs2'>rs2</span><span class='field' style='color: #827717; border-color: #827717; width: 55px' title='rs1'>rs1</span><span class='field' style='color: #ea80fc; border-color: #ea80fc; width: 33px' title='f3'>f3</span><span class='field' style='color: #1b5e20; border-color: #1b5e20; width: 55px' title='rd'>rd</span><span class='field' style='color: #ff5252; border-color: #ff5252; width: 77px' title='op'>op</span></td>
+</tr>
+ <tr>
+  <td align="right" bgcolor="#eeeeee">4112&nbsp;&nbsp;</td>
+  <td bgcolor="#dddddd"><font color="darkorange">ld t3,0(t2)</font></td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'>0003be03 | <span style='color:#6200ea' title='imm'>000000000000</font><span style='color:#827717' title='rs1'>00111</font><span style='color:#ea80fc' title='f3'>011</font><span style='color:#1b5e20' title='rd'>11100</font><span style='color:#ff5252' title='op'>0000011</font> I <span class='field' style='color: #6200ea; border-color: #6200ea; width: 132px' title='imm'>imm</span><span class='field' style='color: #827717; border-color: #827717; width: 55px' title='rs1'>rs1</span><span class='field' style='color: #ea80fc; border-color: #ea80fc; width: 33px' title='f3'>f3</span><span class='field' style='color: #1b5e20; border-color: #1b5e20; width: 55px' title='rd'>rd</span><span class='field' style='color: #ff5252; border-color: #ff5252; width: 77px' title='op'>op</span></td>
+</tr>
+ <tr>
+  <td align="right" bgcolor="#eeeeee">4116&nbsp;&nbsp;</td>
+  <td bgcolor="#dddddd"><font color="deeppink">addi t2,t2,8</font></td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'>00838393 | <span style='color:#6200ea' title='imm'>000000001000</font><span style='color:#827717' title='rs1'>00111</font><span style='color:#ea80fc' title='f3'>000</font><span style='color:#1b5e20' title='rd'>00111</font><span style='color:#ff5252' title='op'>0010011</font> I <span class='field' style='color: #6200ea; border-color: #6200ea; width: 132px' title='imm'>imm</span><span class='field' style='color: #827717; border-color: #827717; width: 55px' title='rs1'>rs1</span><span class='field' style='color: #ea80fc; border-color: #ea80fc; width: 33px' title='f3'>f3</span><span class='field' style='color: #1b5e20; border-color: #1b5e20; width: 55px' title='rd'>rd</span><span class='field' style='color: #ff5252; border-color: #ff5252; width: 77px' title='op'>op</span></td>
+</tr>
+ <tr>
+  <td align="right" bgcolor="#eeeeee">4120&nbsp;&nbsp;</td>
+  <td bgcolor="#dddddd"><font color="royalblue">bne t3,zero,-12 [loop]</font></td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'>fe0e1ae3 | <span style='color:#0d47a1' title='i[12]'>1</font><span style='color:#1565c0' title='i[10:5]'>111111</font><span style='color:#00c853' title='rs2'>00000</font><span style='color:#827717' title='rs1'>11100</font><span style='color:#ea80fc' title='f3'>001</font><span style='color:#1976d2' title='i[4:1]'>1010</font><span style='color:#6200ea' title='i[11]'>1</font><span style='color:#ff5252' title='op'>1100011</font> B <span class='field' style='color: #0d47a1; border-color: #0d47a1; width: 11px' title='i[12]'>i</span><span class='field' style='color: #1565c0; border-color: #1565c0; width: 66px' title='i[10:5]'>i[10:5]</span><span class='field' style='color: #00c853; border-color: #00c853; width: 55px' title='rs2'>rs2</span><span class='field' style='color: #827717; border-color: #827717; width: 55px' title='rs1'>rs1</span><span class='field' style='color: #ea80fc; border-color: #ea80fc; width: 33px' title='f3'>f3</span><span class='field' style='color: #1976d2; border-color: #1976d2; width: 44px' title='i[4:1]'>i[4:1]</span><span class='field' style='color: #6200ea; border-color: #6200ea; width: 11px' title='i[11]'>i</span><span class='field' style='color: #ff5252; border-color: #ff5252; width: 77px' title='op'>op</span></td>
+</tr>
+ <tr>
+  <td align="right" bgcolor="#eeeeee">4124&nbsp;&nbsp;</td>
+  <td bgcolor="#dddddd"><font color="brown">sd t1,0(gp) [a]</font></td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'>0061b023 | <span style='color:#0d47a1' title='i[11:5]'>0000000</font><span style='color:#00c853' title='rs2'>00110</font><span style='color:#827717' title='rs1'>00011</font><span style='color:#ea80fc' title='f3'>011</font><span style='color:#1565c0' title='i[4:0]'>00000</font><span style='color:#ff5252' title='op'>0100011</font> S <span class='field' style='color: #0d47a1; border-color: #0d47a1; width: 77px' title='i[11:5]'>i[11:5]</span><span class='field' style='color: #00c853; border-color: #00c853; width: 55px' title='rs2'>rs2</span><span class='field' style='color: #827717; border-color: #827717; width: 55px' title='rs1'>rs1</span><span class='field' style='color: #ea80fc; border-color: #ea80fc; width: 33px' title='f3'>f3</span><span class='field' style='color: #1565c0; border-color: #1565c0; width: 55px' title='i[4:0]'>i[4:0]</span><span class='field' style='color: #ff5252; border-color: #ff5252; width: 77px' title='op'>op</span></td>
+</tr>
+ <tr>
+  <td align="right" bgcolor="#eeeeee">end&nbsp;&nbsp;</td>
+  <td bgcolor="#dddddd"><font color="magenta">ori a7,x0,10</font></td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'>00a06893 | <span style='color:#6200ea' title='imm'>000000001010</font><span style='color:#827717' title='rs1'>00000</font><span style='color:#ea80fc' title='f3'>110</font><span style='color:#1b5e20' title='rd'>10001</font><span style='color:#ff5252' title='op'>0010011</font> I <span class='field' style='color: #6200ea; border-color: #6200ea; width: 132px' title='imm'>imm</span><span class='field' style='color: #827717; border-color: #827717; width: 55px' title='rs1'>rs1</span><span class='field' style='color: #ea80fc; border-color: #ea80fc; width: 33px' title='f3'>f3</span><span class='field' style='color: #1b5e20; border-color: #1b5e20; width: 55px' title='rd'>rd</span><span class='field' style='color: #ff5252; border-color: #ff5252; width: 77px' title='op'>op</span></td>
+</tr>
+ <tr>
+  <td align="right" bgcolor="#eeeeee">4132&nbsp;&nbsp;</td>
+  <td bgcolor="#dddddd"><font color="blue">ecall</font></td>
+  <td bgcolor="#eeeeee" nowrap='nowrap'>00000073 | <span style='color:#6200ea' title='imm'>000000000000</font><span style='color:#827717' title='rs1'>00000</font><span style='color:#ea80fc' title='f3'>000</font><span style='color:#1b5e20' title='rd'>00000</font><span style='color:#ff5252' title='op'>1110011</font> I <span class='field' style='color: #6200ea; border-color: #6200ea; width: 132px' title='imm'>imm</span><span class='field' style='color: #827717; border-color: #827717; width: 55px' title='rs1'>rs1</span><span class='field' style='color: #ea80fc; border-color: #ea80fc; width: 33px' title='f3'>f3</span><span class='field' style='color: #1b5e20; border-color: #1b5e20; width: 55px' title='rd'>rd</span><span class='field' style='color: #ff5252; border-color: #ff5252; width: 77px' title='op'>op</span></td>
+</tr>
+</table>
+
+</div>
+</div>
+<!-- Final -->
+<div class="w3-row w3-container w3-light-grey">
+<address>
+Arquitectura e Ingeniería de Computadores<br>
+Departamento de Informática de Sistemas y Computadores (DISCA)<br>
+Universitat Politècnica de València<br>
+</address>
+</div>
+
+</body>
+</html>
