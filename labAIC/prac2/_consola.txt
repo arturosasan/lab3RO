@@ -1,2 +1,0 @@
-ecall 10: Programa terminado
-
