@@ -457,3 +457,134 @@ WHERE NOT EXISTS (
 );
 
 /* 3.5 CONSULTAS AGRUPADAS*/
+
+/* EJERCICIO 39. Obtener el código y el título del libro o libros en que se ha basado más de una película, indicando cuántas
+películas se han hecho sobre él.*/
+
+SELECT l.cod_lib, l.titulo, COUNT (p.cod_lib) AS CUÁNTAS
+FROM libro l, pelicula p
+WHERE l.cod_lib = p.cod_lib
+GROUP BY l.cod_lib, l.titulo
+HAVING COUNT (p.cod_lib) > 1;
+
+/* EJERCICIO 40. Obtener para cada género en el que se han clasificado más de 5 películas, el código y el nombre del
+género indicando la cantidad de películas del mismo y duración media de sus películas. (Ordenados por
+nombre). (La función ROUND redondea al entero más cercano).*/
+
+SELECT g.cod_gen, g.nombre, COUNT (c.cod_peli) CUÁNTAS, ROUND (AVG (p.duracion)) AS DUR_MEDI
+FROM genero g, clasificacion c, pelicula p
+WHERE g.cod_gen = c.cod_gen AND p.cod_peli = c.cod_peli
+GROUP BY g.cod_gen, g.nombre
+HAVING COUNT (c.cod_peli) > 5
+ORDER BY g.nombre;
+
+/* EJERCICIO 41. Obtener el código y el título de las películas de año posterior al 2000 junto con el número de géneros en
+que están clasificadas, si es que están en alguno. (Ordenadas por título).*/
+
+SELECT p.cod_peli, p.titulo, COUNT (c.cod_gen) AS CUÁNTOS
+FROM clasificacion c, pelicula p
+WHERE p.anyo > 2000 AND p.cod_peli = c.cod_peli
+GROUP BY p.cod_peli, p.titulo
+HAVING COUNT (c.cod_gen) > 0
+ORDER BY p.titulo;
+
+/* EJERCICIO 42. Obtener los directores que tienen la cadena ‘George’ en su nombre y que han dirigido exactamente dos
+películas.*/
+
+SELECT director
+FROM pelicula
+WHERE director LIKE '%George%'
+GROUP BY director
+HAVING COUNT (cod_peli) = 2;
+
+/* EJERCICIO 43. Obtener para cada película clasificada exactamente en un género y en la que haya actuado algún actor,
+el código, el título y la cantidad de actores que actúan en ella.*/
+
+SELECT p.cod_peli, p.titulo, COUNT (a.cod_act) AS CUÁNTOS
+FROM actua a, pelicula p, clasificacion c
+WHERE p.cod_peli = a.cod_peli AND p.cod_peli = c.cod_peli
+GROUP BY p.cod_peli, p.titulo
+HAVING COUNT (DISTINCT c.cod_gen) = 1 AND COUNT (a.cod_act) > 0
+ORDER BY p.titulo;
+
+/* EJERCICIO 44. Obtener el código y el nombre de los países en los que al menos un actor del país ha actuado en una
+película de la década de los 60, indicando también cuántos actores lo han hecho.*/ 
+
+SELECT p.cod_pais, p.nombre, COUNT (DISTINCT a.cod_act) AS CUÁNTOS
+FROM actua a, pais p, actor ac, pelicula pe
+WHERE pe.anyo BETWEEN 1960 AND 1969
+      AND ac.cod_act = a.cod_act 
+      AND a.cod_peli = pe.cod_peli 
+      AND p.cod_pais = ac.cod_pais
+GROUP BY p.cod_pais, p.nombre
+HAVING COUNT (DISTINCT ac.cod_act) > 0;
+
+/* EJERCICIO 45. Obtener el código, el nombre del género en el que hay clasificadas más películas (puede haber más de
+uno).*/
+
+SELECT g.cod_gen, g.nombre
+FROM genero g, clasificacion c
+WHERE g.cod_gen = c.cod_gen
+GROUP BY g.cod_gen, g.nombre
+HAVING COUNT(DISTINCT c.cod_peli) >= ALL
+  ( SELECT COUNT(DISTINCT cod_peli)
+    FROM clasificacion
+    GROUP BY cod_gen
+  );
+
+/* EJERCICIO 46 Obtener el código, el título y el autor del libro en el que se han basado más películas (puede haber más
+de uno) */ 
+
+SELECT l.cod_lib, l.titulo, l.autor
+FROM libro l, pelicula p
+WHERE l.cod_lib = p.cod_lib
+GROUP BY l.cod_lib, l.titulo, l.autor
+HAVING COUNT(DISTINCT p.cod_peli) >= ALL
+  ( SELECT COUNT(DISTINCT cod_peli)
+    FROM pelicula
+    WHERE cod_lib IS NOT NULL
+    GROUP BY cod_lib
+  );
+
+/* EJERCICIO 47. Obtener el código y el nombre del país que más actores tiene que hayan participado exactamente en 2
+películas.*/ 
+
+SELECT p.cod_pais, p.nombre
+FROM pais p, actor a, actua ac
+WHERE p.cod_pais = a.cod_pais
+  AND a.cod_act = ac.cod_act
+  AND a.cod_act IN (
+      SELECT cod_act
+      FROM actua
+      GROUP BY cod_act
+      HAVING COUNT(DISTINCT cod_peli) = 2
+  )
+GROUP BY p.cod_pais, p.nombre
+HAVING COUNT(DISTINCT a.cod_act) >= ALL (
+    SELECT COUNT(DISTINCT t.cod_act)
+    FROM actor t, actua u
+    WHERE t.cod_act = u.cod_act
+      AND t.cod_act IN (
+          SELECT cod_act
+          FROM actua
+          GROUP BY cod_act
+          HAVING COUNT(DISTINCT cod_peli) = 2
+      )
+    GROUP BY t.cod_pais
+);
+
+/* EJERCICIO 48. Obtener el año o años en el que nacieron más de 3 actores indicando cuántos nacieron exactamente*/
+
+SELECT EXTRACT (YEAR FROM ac.fecha_nac) COUNT (ac.cod_act) AS CUANTOS,
+FROM actor ac
+GROUP BY EXTRACT (YEAR FROM ac.fecha_nac);
+
+/* EJERCICIO 49. Obtener el código y el título de las películas de menos de 100 minutos en las que todos los actores que
+han actuado son de un mismo país. */
+
+SELECT p.cod_peli,p.titulo,p.anyo
+FROM pelicula p,actua ac , actor a
+WHERE p.duracion<100 AND p.cod_peli = ac.cod_peli AND ac.cod_act= a.cod_act
+GROUP BY p.cod_peli, p.titulo, p.anyo
+HAVING COUNT (a.cod_pais)=1
+ORDER BY p.cod_peli;
